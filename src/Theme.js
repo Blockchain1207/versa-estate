@@ -70,7 +70,7 @@ const theme = createTheme({
           borderRadius: 18,
           fontWeight: 400,
           fontSize: "1.2rem",
-          padding: "10px",
+          padding: "3px",
           minWidth: 138
         }
         // contained: {

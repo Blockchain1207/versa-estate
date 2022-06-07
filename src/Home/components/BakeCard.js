@@ -31,22 +31,6 @@ const ButtonContainer = styled(Grid)(({ theme }) => ({
     marginBottom: 40
   }
 }));
-// const CustomButtonDark = styled(Button)(({ theme }) => ({
-//   color: theme.palette.text.textLight,
-//   background: theme.palette.text.darkBgColor,
-//   border: `1px solid ${theme.palette.text.textLight}`,
-//   padding: "8px 18px",
-//   '&:hover,&:focus': {
-//     backgroundColor: theme.palette.primary.light,
-//     borderColor: theme.palette.text.textLight,
-//     boxShadow: 'none',
-//   },
-//   "&:disabled": {
-//     color: theme.palette.text.darkBgColor,
-//     borderColor: theme.palette.text.textLight,
-//     backgroundColor: "#46494C"
-//   },
-// }));
 
 const CustomButtonDark = styled(Button)(({ theme }) => ({
   color: "#F8F0E3",
@@ -66,14 +50,6 @@ const CustomButtonDark = styled(Button)(({ theme }) => ({
     borderColor: theme.palette.text.textLight,
   },
 }));
-// const CustomButtonLight = styled(Button)(({ theme }) => ({
-//   color: theme.palette.text.darkBgColor,
-//   background: "#46494C",
-//   border: `1px solid ${theme.palette.text.textLight}`,
-//   padding: "8px 18px"
-// }));
-
-// let timeout = null;
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -157,7 +133,7 @@ export default function BakeCard() {
       setWalletBalance({
         busd: fromWei(`${busdAmount}`),
         deposit: fromWei(`${depositAmount}`),
-        withdraw: fromWei(`${withdrawAmount * 93 / 95}`),
+        withdraw: fromWei(`${withdrawAmount}`),
         checkpoint: checkTime,
         approved: approvedAmount
       });
@@ -301,23 +277,6 @@ export default function BakeCard() {
     setLoading(false);
   };
 
-  // const approve = async () => {
-  //   setLoading(true);
-
-  //   const lcontract = "0x5fc2a7c6f8cb527e5e76f5691451641779533d17";
-
-  //   try {
-  //     await busdcontract.methods
-  //       .approve(lcontract, "1000000000000000000000000000000")
-  //       .send({
-  //         from: address
-  //       });
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  //   setLoading(false);
-  // };
-
   const reBake = async () => {
     setLoading(true);
 
@@ -350,247 +309,76 @@ export default function BakeCard() {
 
   return (
     <>
-      {loading && <LinearProgress color="secondary" />}
-      {/* <Box >
-        <Grid
-          container
-          justifyContent="space-between"
-          alignItems="center"
-          mt={3}
-        >
-          <Typography variant="body1">CONTRACT</Typography>
-          <Typography variant="h5">{contractBUSD} BUSD</Typography>
-        </Grid>
-        <Grid
-          container
-          justifyContent="space-between"
-          alignItems="center"
-          mt={3}
-        >
-          <Typography variant="body1">WALLET</Typography>
-          <Typography variant="h5">{walletBalance.busd} BUSD</Typography>
-        </Grid>
-        <Grid
-          container
-          justifyContent="space-between"
-          alignItems="center"
-          mt={3}
-        >
-          <Typography variant="body1">YOUR LAND</Typography>
-          <Typography variant="h5">{walletBalance.beans} LAND</Typography>
-        </Grid>
-        <Box paddingTop={4} paddingBottom={3}>
-          <Box>
-            <PriceInput
-              max={+walletBalance.busd}
-              value={bakeBUSD}
-              onChange={(value) => onUpdateBakeBUSD(value)}
-            />
-          </Box>
-          <Box marginTop={3} marginBottom={3}>
-            <Button
-              variant="contained"
-              fullWidth
-              disabled={
-                wrongNetwork ||
-                !address ||
-                loading ||
-                +walletBalance.approved !== 0
-              }
-              onClick={approve}
-            >
-              Approve
-            </Button>
-          </Box>
-          <Box marginTop={3} marginBottom={3}>
-            <Button
-              variant="contained"
-              fullWidth
-              disabled={
-                wrongNetwork ||
-                !address ||
-                +bakeBUSD === 0 ||
-                loading ||
-                +walletBalance.approved === 0
-              }
-              onClick={bake}
-            >
-              Buy LAND
-            </Button>
-          </Box>
-          <Divider />
-          <Grid
-            container
-            justifyContent="space-between"
-            alignItems="center"
-            mt={3}
-          >
-            <Typography variant="body1" fontWeight="bolder">
-              Your Rewards
-            </Typography>
-            <Typography variant="h5" fontWeight="bolder">
-              {walletBalance.rewards} BUSD
-            </Typography>
-          </Grid>
-          <ButtonContainer container>
-            <Grid item flexGrow={1} marginRight={1} marginTop={3}>
-              <Button
-                variant="contained"
-                color="secondary"
-                fullWidth
-                disabled={wrongNetwork || !address || loading}
-                onClick={reBake}
-              >
-                Compound
-              </Button>
-            </Grid>
-            <Grid item flexGrow={1} marginLeft={1} marginTop={3}>
-              <Button
-                variant="contained"
-                color="secondary"
-                fullWidth
-                disabled={wrongNetwork || !address || loading}
-                onClick={eatBeans}
-              >
-                Harvest
-              </Button>
-            </Grid>
-          </ButtonContainer>
-        </Box>
-      </Box> */}
+      {/* {loading && <LinearProgress color="secondary" />} */}
       <Box component="div" sx={{ width: "100%" }}>
         <Grid container spacing={1} sx={{ width: "100%" }}>
           <Grid item sm={6} xs={12}>
             <Box component="div" sx={{ mb: "18px" }}>
               <Typography variant="body1" sx={{ fontWeight: "500" }}>
-                CONTRACT:
+                Contract:
               </Typography>
               <Typography variant="caption" color="text.textLight">
-                {contractBUSD}
+                {`${contractBUSD} USDC`}
               </Typography>
             </Box>
             <Box component="div" sx={{ mb: "18px" }}>
               <Typography variant="body1" sx={{ fontWeight: "500" }}>
-                MY BUSD DEPOSITS:
+                Wallet:
               </Typography>
               <Typography variant="caption" color="text.textLight">
-                {walletBalance.deposit}
+                {`${walletBalance.deposit} USDC`}
               </Typography>
             </Box>
             <Box component="div" sx={{ mb: "18px" }}>
               <Typography variant="body1" sx={{ fontWeight: "500" }}>
-                WITHDRAWN / MAX PAYOUT:
+                My Profits:
               </Typography>
-              <Typography variant="caption" color="text.textLight">
-                {`${walletBalance.withdraw} / ${Number.parseFloat(walletBalance.deposit * 365 / 100).toFixed(3)}`}
-              </Typography>
-            </Box>
-            <Box component="div" sx={{ mb: "48px" }}>
-              <Typography variant="body1" sx={{ fontWeight: "500" }}>
-                NEXT ACTION:
-              </Typography>
-              {countdown.alive ?
+              <Grid
+                container
+                alignItems="center"
+                justifyContent="space-between"
+                // justifyContent="start"
+              >
                 <Typography variant="caption" color="text.textLight">
-                  {`${countdown.days}d:${countdown.hours}h:${countdown.minutes}m:${countdown.seconds}s`}
+                  {`${walletBalance.withdraw} USDC`}
                 </Typography>
-                :
-                <Typography variant="caption" color="text.textLight">
-                  Ready
-                </Typography>
-              }
+                <CustomButtonDark
+                  variant="contained"
+                  style={{marginRight: "50px", height: "30px"}}
+                  disabled={wrongNetwork || !address || loading || countdown.alive}
+                  onClick={eatBeans}
+                >
+                  COLLECT
+                </CustomButtonDark>
+              </Grid>
             </Box>
-            {/* <Box component="div" sx={{ mb: "18px" }}>
-              <Typography variant="body1" sx={{ fontWeight: "500" }}>
-                MINING:
-              </Typography>
-              <Typography variant="caption" color="text.textLight">
-                {`${countdown.total > 0 ?
-                  Number.parseFloat((3600 * 24 * 7 - countdown.total) * walletBalance.deposit / 4762204).toFixed(3)
-                : 
-                  Number.parseFloat(3600 * 24 * 7 * walletBalance.deposit / 4762204).toFixed(3)
-                }` + " BUSD"}
-              </Typography>
-            </Box> */}
           </Grid>
           <Grid item sm={6} xs={12}>
-            <Box component="div" sx={{ mt: { sm: "8px", xs: "0px" } }}>
-              <PriceInput
-                max={+walletBalance.busd}
-                value={bakeBUSD}
-                onChange={(value) => onUpdateBakeBUSD(value)}
-              />
-              <CustomButtonDark fullWidth
-                disabled={
-                  wrongNetwork ||
-                  !address ||
-                  +bakeBUSD === 0 ||
-                  loading ||
-                  countdown.alive
-                }
-                sx={{ mt: 5, mb: 3 }}
-                onClick={bake}>
-                DEPOSIT
-              </CustomButtonDark>
-              <Typography variant="body1" sx={{
-                  display: "flex",
-                  align: "center",
-                  justifyContent: "center",
-                }}>
-                REWARDS{" "}
-                <Typography component="span" sx={{ ml: 2 }} color="text.textLight">
-                  {/* {Number.parseFloat(walletBalance.deposit * 0.127).toFixed(3)} */}
-                  {`${countdown.total > 0 ?
-                    Number.parseFloat((3600 * 24 * 7 - countdown.total) * walletBalance.deposit / 4762204).toFixed(3)
-                  : 
-                    Number.parseFloat(3600 * 24 * 7 * walletBalance.deposit / 4762204).toFixed(3)
-                  }`}
-                </Typography>{" "}
-                &nbsp;BUSD
+            <Box component="div" sx={{ mb: "18px" }}>
+              <Typography variant="body1" sx={{ fontWeight: "500" }}>
+                Total Renting Modules:
               </Typography>
-              {/* <Box
-                sx={{
-                  display: "flex",
-                  align: "center",
-                  justifyContent: "space-between",
-                  flexWrap: "wrap",
-                  marginLeft: "15px",
-                  marginRight: "15px",
-                  my: 2
-                }}
-              >
-                <CustomButtonDark
-                  disabled={wrongNetwork || !address || loading}
-                  onClick={reBake}>
-                    COMPOUND
-                </CustomButtonDark>
-                <CustomButtonDark
-                  disabled={wrongNetwork || !address || loading}
-                  onClick={eatBeans}>
-                    COLLECT
-                </CustomButtonDark>
-              </Box> */}
-              <ButtonContainer container>
-                <Grid item flexGrow={1} marginRight={1} marginTop={3}>
-                  <CustomButtonDark
-                    variant="contained"
-                    fullWidth
-                    disabled={wrongNetwork || !address || loading || countdown.alive}
-                    onClick={reBake}
-                  >
-                    COMPOUND
-                  </CustomButtonDark>
-                </Grid>
-                <Grid item flexGrow={1} marginLeft={1} marginTop={3}>
-                  <CustomButtonDark
-                    variant="contained"
-                    fullWidth
-                    disabled={wrongNetwork || !address || loading || countdown.alive}
-                    onClick={eatBeans}
-                  >
-                    COLLECT
-                  </CustomButtonDark>
-                </Grid>
-              </ButtonContainer>
+              <Typography variant="caption" color="text.textLight">
+                {`${contractBUSD} USDC`}
+              </Typography>
+            </Box>
+            <Box component="div" sx={{ mb: "18px" }}>
+              <Typography variant="body1" sx={{ fontWeight: "500" }}>
+                Treasury:
+              </Typography>
+              <Typography variant="caption" color="text.textLight">
+                {`${walletBalance.deposit} USDC`}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item sm={12} xs={12}>
+            <Box component="div" sx={{ mb: "48px" }}>
+                <Typography variant="body1" sx={{ fontWeight: "500" }}>
+                  My Renting Modules:
+                </Typography>
+                <Typography variant="caption" color="text.textLight">
+                  {`${0} Apartment(s) - ${0} House(s) - ${0} Building(s) - ${0}Villa(s)`}
+                </Typography>
             </Box>
           </Grid>
         </Grid>

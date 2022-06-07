@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <Wrapper>
       <Header />
-      <Connect />
+      {/* <Connect /> */}
       <BakeCard />
       <NutritionFacts address={address} />
       {/* <ReferralLink address={address} /> */}

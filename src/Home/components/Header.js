@@ -111,10 +111,11 @@ export default function Header() {
   return (
     <Wrapper>
       <img src={logo} alt="" width={"42%"} style={{ marginTop: -10, minWidth: "225px" }} />
+      <Typography variant="body2" sx={{fontWeight: "400"}} marginTop={2}>
+        Fractional investment of Real Estate<br/>
+        in the Meta Verse and in Real Life, powered by blockchain.
+      </Typography>
       <Connect responsive={false} />
-      {/* <Typography variant="h4" color="secondary" >BUSD PAYCHECK</Typography>
-      <Typography variant="h6" color="secondary" sx={{fontWeight: "400"}}>AUTOMINER</Typography>
-      <Connect responsive={false} /> */}
       {/* <Typography variant="h6" marginTop={3}>
         Invest Safely, Contract Ownership has been Renounced
       </Typography> */}

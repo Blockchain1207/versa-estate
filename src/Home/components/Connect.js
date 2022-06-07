@@ -29,10 +29,10 @@ const SmallScreenConnectButton = styled(Button)(({ theme }) => ({
   color: theme.palette.text.textLight,
   borderColor: theme.palette.text.textLight,
   backgroundColor: theme.palette.text.darkBgColor,
-  display: "none",
+  // display: "none",
   marginTop: 30,
   marginBottom: 18,
-  width: "95%",
+  width: "30%",
   marginLeft: "auto",
   marginRight: "auto",
   [theme.breakpoints.down("md")]: {

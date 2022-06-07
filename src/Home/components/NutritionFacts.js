@@ -15,22 +15,7 @@ import { useEffect, useState } from "react";
 const CardWrapper = styled(Card)(({ theme }) => ({
   background: theme.palette.text.darkBgColor
 }));
-// const CustomButtonDark = styled(Button)(({ theme }) => ({
-//   color: theme.palette.text.textLight,
-//   background: theme.palette.text.darkBgColor,
-//   border: `1px solid ${theme.palette.text.textLight}`,
-//   padding: "8px 18px",
-//   "&:hover,&:focus": {
-//     backgroundColor: theme.palette.primary.light,
-//     borderColor: theme.palette.text.textLight,
-//     boxShadow: "none"
-//   },
-//   "&:disabled": {
-//     color: theme.palette.text.darkBgColor,
-//     borderColor: theme.palette.text.textLight,
-//     backgroundColor: "#46494C"
-//   }
-// }));
+
 const CustomButtonDark = styled(Button)(({ theme }) => ({
   color: "#F8F0E3",
   border: `1px solid ${theme.palette.text.textLight}`,
@@ -156,14 +141,19 @@ export default function NutritionFacts(props) {
   };
 
   return (
+    <>
+    <Typography variant="h5" color="white" style={{textAlign: "center"}} gutterBottom>
+      Referral Link
+    </Typography>
+    
     <CardWrapper>
       <CardContent sx={{ p: 3 }}>
         <Grid container columnSpacing={3}>
-          <Grid item md={6} xs={12}>
+          <Grid item md={12} xs={12} textAlign="center">
             <ReferralLink address={props.address} />
           </Grid>
-          <Grid item md={6} xs={12}>
-            <Box component="div" sx={{ width: "100%" }}>
+          <Grid item md={12} xs={12}>
+            <Box component="div" sx={{ width: "50%", marginLeft: "25%"}}>
                 <Grid
                   container
                   alignItems="center"
@@ -182,58 +172,25 @@ export default function NutritionFacts(props) {
                   justifyContent="space-between"
                 >
                   <Typography variant="body2" color="primary" gutterBottom>
-                    Your Referral Withdrawn
-                  </Typography>
-                  <Typography variant="body2" gutterBottom>
-                    {referralData.withdraw}
-                  </Typography>
-                </Grid>
-                <Grid
-                  container
-                  alignItems="center"
-                  justifyContent="space-between"
-                >
-                  <Typography variant="body2" color="primary" gutterBottom>
                     Your Rewards
                   </Typography>
                   <Typography variant="body2" gutterBottom>
                     {referralData.reward}
                   </Typography>
-                </Grid>
-            </Box>
-            {/* <Box
-              component="div"
-              sx={{
-                display: "flex",
-                align: "center",
-                justifyContent: "space-between",
-                flexWrap: "wrap",
-                my: 2,
-                width: "100%"
-              }}
-            >
-              <CustomButtonDark
-                disabled={wrongNetwork || !address || loading}
-                onClick={reHire}>COMPOUND</CustomButtonDark>
-              <CustomButtonDark
-                disabled={wrongNetwork || !address || loading}
-                onClick={collect}>COLLECT</CustomButtonDark>
-            </Box> */}
-            <ButtonContainer container>
-                {/* <Grid item flexGrow={1} marginRight={1} marginTop={3}>
                   <CustomButtonDark
                     variant="contained"
-                    fullWidth
                     disabled={wrongNetwork || !address || loading}
-                    onClick={reHire}
+                    onClick={collect}
                   >
-                    COMPOUND
+                    COLLECT
                   </CustomButtonDark>
-                </Grid> */}
+                </Grid>
+            </Box>
+
+            <ButtonContainer container>
                 <Grid item flexGrow={1} marginLeft={1} marginTop={3}>
                   <CustomButtonDark
                     variant="contained"
-                    fullWidth
                     disabled={wrongNetwork || !address || loading}
                     onClick={collect}
                   >
@@ -243,10 +200,8 @@ export default function NutritionFacts(props) {
             </ButtonContainer>
           </Grid>
         </Grid>
-        {/* <Typography variant="h5" borderBottom="6px solid" paddingBottom={1}>
-          BUSD LAND Details
-        </Typography> */}
       </CardContent>
     </CardWrapper>
+    </>
   );
 }
